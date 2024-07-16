@@ -1,0 +1,21 @@
+@use "./styles/colors" as *;
+
+.main {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+}
+
+@media only screen and (min-width: 1024px) {
+  .main {
+    height: unset;
+    width: 940px;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    background-color: $white;
+    border-radius: 15px;
+    box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.0951);
+  }
+}
