@@ -8,10 +8,11 @@ import {
 } from "react";
 import { ClipLoader } from "react-spinners";
 import styles from "./App.module.scss";
+import AddonsCard from "./components/cards/AddonsCard";
 import PersonalInfoCard from "./components/cards/PersonalInfoCard";
 import { NavBar } from "./components/NavBar";
 import { StepIndicator } from "./components/StepIndicator";
-import { Plan, plans, steps } from "./data";
+import { Addon, addons, Plan, plans, steps } from "./data";
 import { reducer, State } from "./reducer";
 
 const PlanCard = lazy(() => import("./components/cards/PlanCard"));
@@ -81,6 +82,16 @@ function App() {
                     selectedPriceType={state.priceType}
                     onPriceTypeToggle={() =>
                       dispatch({ type: "TOGGLE_PRICE_TYPE" })
+                    }
+                  />
+                )}
+                {step === 2 && (
+                  <AddonsCard
+                    addons={addons}
+                    priceType={state.priceType}
+                    checkedAddons={state.addons}
+                    onToggleAddon={(addon: Addon) =>
+                      dispatch({ type: "TOGGLE_PLAN_ADDON", addon })
                     }
                   />
                 )}
