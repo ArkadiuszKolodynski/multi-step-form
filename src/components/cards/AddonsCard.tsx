@@ -71,7 +71,7 @@ export default function AddonsCard({
   );
 }
 
-function getPriceMessage(addon: Addon, priceType: PriceType) {
+function getPriceMessage(addon: Addon, priceType: PriceType): string {
   if (priceType === "monthly") {
     return `+$${addon.monthlyPrice}/mo`;
   }
