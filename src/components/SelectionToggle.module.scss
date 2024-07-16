@@ -1,0 +1,81 @@
+@use "../styles/colors" as *;
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 0.8125rem 0.5rem 0.875rem;
+  border-radius: 8px;
+  background-color: $alabaster;
+}
+
+.toggleCheck {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+$toggle-width: 2.375rem;
+$toggle-height: 1.25rem;
+$label-spacing: 1.5rem;
+$handle-size: 0.75rem;
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: $toggle-height;
+  width: $toggle-width;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: $marine-blue;
+  border-radius: calc($toggle-height / 2);
+  color: $cool-gray;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    content: attr(data-left-label);
+    top: 50%;
+    transform: translateY(-50%);
+    right: calc(100% + $label-spacing);
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    content: attr(data-right-label);
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% + $label-spacing);
+    pointer-events: none;
+  }
+
+  .toggleCheck:not(:checked) + &::before,
+  .toggleCheck:checked + &::after {
+    color: $marine-blue;
+  }
+
+  .toggleCheck:not(checked) + & > .toggleHandle {
+    transform: translateX(0.25rem);
+  }
+
+  .toggleCheck:checked + & > .toggleHandle {
+    transform: translateX(calc($toggle-width - ($handle-size + 0.25rem)));
+  }
+
+  .toggleCheck:focus + & {
+    outline: 2px solid $purplish-blue;
+    outline-offset: 2px;
+  }
+}
+
+.toggleHandle {
+  width: $handle-size;
+  height: $handle-size;
+  display: block;
+  background-color: $white;
+  border-radius: 100%;
+  transition: transform 120ms ease-in-out;
+}

@@ -1,10 +1,20 @@
-import { Suspense, useId, useReducer, useState } from "react";
+import {
+  lazy,
+  startTransition,
+  Suspense,
+  useId,
+  useReducer,
+  useState,
+} from "react";
 import { ClipLoader } from "react-spinners";
 import styles from "./App.module.scss";
 import PersonalInfoCard from "./components/cards/PersonalInfoCard";
+import { NavBar } from "./components/NavBar";
 import { StepIndicator } from "./components/StepIndicator";
-import { plans, steps } from "./data";
+import { Plan, plans, steps } from "./data";
 import { reducer, State } from "./reducer";
+
+const PlanCard = lazy(() => import("./components/cards/PlanCard"));
 
 function App() {
   const initialState: State = {
@@ -17,9 +27,23 @@ function App() {
     addons: new Set(),
   };
 
-  const [step] = useState(0);
+  const [step, setStep] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isComplete, setIsComplete] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const personalInfoFormId = "form-" + useId();
+
+  const goToNextStep = () => {
+    startTransition(() => setStep((step) => step + 1));
+  };
+
+  const goToPrevStep = () => {
+    startTransition(() => setStep((step) => step - 1));
+  };
+
+  const finish = () => {
+    startTransition(() => setIsComplete(true));
+  };
 
   return (
     <main className={styles.main}>
@@ -43,10 +67,34 @@ function App() {
                         email: result.email,
                         phoneNumber: result.phone,
                       });
+                      goToNextStep();
                     }}
                   />
                 )}
+                {step === 1 && (
+                  <PlanCard
+                    plans={plans}
+                    selectedPlan={state.plan}
+                    onPlanChange={(plan: Plan) =>
+                      dispatch({ type: "UPDATE_PLAN", plan })
+                    }
+                    selectedPriceType={state.priceType}
+                    onPriceTypeToggle={() =>
+                      dispatch({ type: "TOGGLE_PRICE_TYPE" })
+                    }
+                  />
+                )}
               </div>
+
+              <NavBar
+                steps={steps.length}
+                currentStep={step}
+                isAtPersonalInfoStep={step === 0}
+                personalInfoFormId={personalInfoFormId}
+                onBackButtonClick={goToPrevStep}
+                onNextStepButtonClick={goToNextStep}
+                onConfirmButtonClick={finish}
+              />
             </>
           }
         </div>

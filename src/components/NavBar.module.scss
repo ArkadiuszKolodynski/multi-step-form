@@ -1,0 +1,85 @@
+@use "../styles/colors" as *;
+
+$btn-font-size: 0.875rem;
+$btn-font-weight: 500;
+$btn-padding: 0.75rem 1rem;
+$btn-radius: 4px;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $white;
+  padding: 1rem;
+  box-shadow: 0 -8px 40px -20px rgba(0, 0, 0, 0.0951);
+}
+
+.goBackButton {
+  color: $cool-gray;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  border-radius: $btn-radius;
+  cursor: pointer;
+
+  &:hover {
+    color: $marine-blue;
+  }
+
+  &:focus {
+    outline: 2px solid $purplish-blue;
+    outline-offset: 2px;
+  }
+}
+
+.nextStepButton {
+  background-color: $marine-blue;
+  color: $white;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  padding: $btn-padding;
+  border-radius: $btn-radius;
+  cursor: pointer;
+
+  &:only-child {
+    margin-left: auto;
+  }
+
+  &:hover {
+    background-color: hsl(213, 72%, 31%);
+  }
+
+  &:focus {
+    outline: 2px solid $purplish-blue;
+    outline-offset: 2px;
+  }
+}
+
+.confirmButton {
+  background-color: $purplish-blue;
+  color: $white;
+  font-size: $btn-font-size;
+  font-weight: $btn-font-weight;
+  padding: $btn-padding;
+  border-radius: $btn-radius;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $pastel-blue;
+  }
+
+  &:focus {
+    outline: 2px solid $purplish-blue;
+    outline-offset: 2px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  $btn-font-size: 1rem;
+  $btn-padding: 0.875rem 1.5rem 1rem;
+  $btn-radius: 0.5rem;
+
+  .container {
+    padding: 0 1rem;
+    box-shadow: none;
+  }
+}

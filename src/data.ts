@@ -20,7 +20,7 @@ export const plans: Plan[] = [
   {
     id: "monthly_arcade",
     name: "Arcade",
-    icon: "icon-arcade",
+    icon: "arcade",
     bonusMessage: "2 months free",
     monthlyPrice: 9,
     yearlyPrice: 90,
@@ -28,7 +28,7 @@ export const plans: Plan[] = [
   {
     id: "monthly_advanced",
     name: "Advanced",
-    icon: "icon-advanced",
+    icon: "advanced",
     bonusMessage: "2 months free",
     monthlyPrice: 12,
     yearlyPrice: 120,
@@ -36,7 +36,7 @@ export const plans: Plan[] = [
   {
     id: "monthly_pro",
     name: "Pro",
-    icon: "icon-pro",
+    icon: "pro",
     bonusMessage: "2 months free",
     monthlyPrice: 15,
     yearlyPrice: 150,

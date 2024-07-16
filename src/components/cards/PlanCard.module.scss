@@ -1,0 +1,99 @@
+@use "../../styles/colors" as *;
+
+.planList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.planWrapper {
+  position: relative;
+}
+
+.planRadio {
+  position: absolute;
+  width: 1;
+  height: 1;
+  opacity: 0;
+
+  &:checked + .plan {
+    background-color: $alabaster;
+    border-color: $purplish-blue;
+  }
+
+  &:hover + .plan {
+    border-color: $purplish-blue;
+  }
+
+  &:focus + .plan {
+    outline: 2px solid $purplish-blue;
+  }
+}
+
+$icon-size: 2.5rem;
+$pad-top: 0.875rem;
+$pad-sides: 1rem;
+
+.plan {
+  display: block;
+  position: relative;
+  border: 1px solid $cool-gray;
+  border-radius: 8px;
+  padding: $pad-top $pad-sides 1.0625rem calc($pad-sides + $icon-size + 0.875rem);
+  cursor: pointer;
+}
+
+.planIcon {
+  position: absolute;
+  top: $pad-top;
+  left: $pad-sides;
+  width: $icon-size;
+  height: $icon-size;
+}
+
+.planName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: $marine-blue;
+}
+
+.planPrice {
+  margin-top: 0.4375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: $cool-gray;
+}
+
+.bonusMessage {
+  margin-top: 0.4375rem;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  color: $marine-blue;
+}
+
+.priceTypeSelector {
+  margin-top: 1.5em;
+}
+
+@media only screen and (min-width: 1024px) {
+  .planList {
+    flex-direction: row;
+    gap: 1.125rem;
+  }
+
+  .planWrapper {
+    flex: 1;
+  }
+
+  .plan {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .planIcon {
+    position: unset;
+  }
+
+  .planName {
+    margin-top: 2.4375rem;
+  }
+}
