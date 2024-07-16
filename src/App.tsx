@@ -9,6 +9,7 @@ import {
 import { ClipLoader } from "react-spinners";
 import styles from "./App.module.scss";
 import AddonsCard from "./components/cards/AddonsCard";
+import FinishingUpCard from "./components/cards/FinishingUpCard";
 import PersonalInfoCard from "./components/cards/PersonalInfoCard";
 import { NavBar } from "./components/NavBar";
 import { StepIndicator } from "./components/StepIndicator";
@@ -40,6 +41,10 @@ function App() {
 
   const goToPrevStep = () => {
     startTransition(() => setStep((step) => step - 1));
+  };
+
+  const goToPlanStep = () => {
+    startTransition(() => setStep(1));
   };
 
   const finish = () => {
@@ -93,6 +98,14 @@ function App() {
                     onToggleAddon={(addon: Addon) =>
                       dispatch({ type: "TOGGLE_PLAN_ADDON", addon })
                     }
+                  />
+                )}
+                {step === 3 && (
+                  <FinishingUpCard
+                    onChangePlanClick={goToPlanStep}
+                    plan={state.plan}
+                    addons={state.addons}
+                    priceType={state.priceType}
                   />
                 )}
               </div>
