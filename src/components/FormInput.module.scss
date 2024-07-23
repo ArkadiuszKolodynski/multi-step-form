@@ -4,6 +4,10 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
+
+  @media only screen and (min-width: 1024px) {
+    font-size: 0.875rem;
+  }
 }
 
 .label {
@@ -42,14 +46,8 @@
   &.error {
     border-color: $strawberry-red;
   }
-}
 
-@media only screen and (min-width: 1024px) {
-  .labelContainer {
-    font-size: 0.875rem;
-  }
-
-  .input {
+  @media only screen and (min-width: 1024px) {
     margin-top: 0.5rem;
     font-size: 1rem;
     padding: 0.9375rem 1rem;
