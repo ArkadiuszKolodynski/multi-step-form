@@ -12,6 +12,11 @@ $btn-radius: 4px;
   background-color: $white;
   padding: 1rem;
   box-shadow: 0 -8px 40px -20px rgba(0, 0, 0, 0.0951);
+
+  @media only screen and (min-width: 1024px) {
+    padding: 0 1rem;
+    box-shadow: none;
+  }
 }
 
 .goBackButton {
@@ -77,9 +82,4 @@ $btn-radius: 4px;
   $btn-font-size: 1rem;
   $btn-padding: 0.875rem 1.5rem 1rem;
   $btn-radius: 0.5rem;
-
-  .container {
-    padding: 0 1rem;
-    box-shadow: none;
-  }
 }

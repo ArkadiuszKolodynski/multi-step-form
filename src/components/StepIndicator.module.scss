@@ -11,12 +11,28 @@ $step-number-size: 2.0625rem;
   background-image: url("../assets/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media only screen and (min-width: 1024px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
+    width: 17.125rem;
+    height: 35.5rem;
+    background-image: url("../assets/images/bg-sidebar-desktop.svg");
+    background-size: cover;
+    padding: 2.5rem 2rem;
+  }
 }
 
 .step {
   display: flex;
   flex-direction: column;
   min-height: $step-number-size;
+
+  @media only screen and (min-width: 1024px) {
+    position: relative;
+    padding-left: calc($step-number-size + 1rem);
+  }
 }
 
 .stepNumber {
@@ -38,49 +54,34 @@ $step-number-size: 2.0625rem;
     background-color: $light-blue;
     border-width: 0;
   }
-}
 
-.stepId {
-  display: none;
-  text-transform: uppercase;
-  color: $pastel-blue;
-}
-
-.stepName {
-  display: none;
-  margin-top: 0.25rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: $white;
-}
-
-@media only screen and (min-width: 1024px) {
-  .container {
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 2rem;
-    width: 17.125rem;
-    height: 35.5rem;
-    background-image: url("../assets/images/bg-sidebar-desktop.svg");
-    background-size: cover;
-    padding: 2.5rem 2rem;
-  }
-
-  .step {
-    position: relative;
-    padding-left: calc($step-number-size + 1rem);
-  }
-
-  .stepNumber {
+  @media only screen and (min-width: 1024px) {
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
   }
+}
 
-  .stepId,
-  .stepName {
+.stepId {
+  display: none;
+
+  @media only screen and (min-width: 1024px) {
     display: unset;
+    text-transform: uppercase;
+    color: $pastel-blue;
+  }
+}
+
+.stepName {
+  display: none;
+
+  @media only screen and (min-width: 1024px) {
+    display: unset;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: $white;
   }
 }
