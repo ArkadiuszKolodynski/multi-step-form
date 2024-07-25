@@ -1,0 +1,56 @@
+@use "../styles/colors" as *;
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+
+  @media only screen and (min-width: 1024px) {
+    font-size: 0.875rem;
+  }
+}
+
+.label {
+  color: $marine-blue;
+}
+
+.errorMessage {
+  font-weight: 500;
+  color: $strawberry-red;
+}
+
+.input {
+  width: 100%;
+  margin-top: 0.1875rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: $marine-blue;
+  background-color: $white;
+  padding: 0.6875rem 1rem 0.75rem;
+  border: 1px solid $light-gray;
+  border-radius: 4px;
+
+  &::placeholder {
+    color: $cool-gray;
+  }
+
+  &:focus {
+    outline: 2px solid $purplish-blue;
+    border-color: $purplish-blue;
+  }
+
+  &hover {
+    border-color: $purplish-blue;
+  }
+
+  &.error {
+    border-color: $strawberry-red;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    padding: 0.9375rem 1rem;
+    border-radius: 8px;
+  }
+}
