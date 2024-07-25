@@ -1,3 +1,4 @@
+import checkmarkIcon from "../../assets/images/icon-checkmark.svg";
 import { Addon, PriceType } from "../../data";
 import styles from "./AddonsCard.module.scss";
 import { Card } from "./Card";
@@ -43,20 +44,11 @@ export default function AddonsCard({
               tabIndex={0}
             >
               <div className={styles.checkbox}>
-                <svg
+                <img
+                  src={checkmarkIcon}
+                  alt="Checkmark"
                   className={styles.checkmark}
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="9"
-                  viewBox="0 0 12 9"
-                >
-                  <path
-                    fill="none"
-                    stroke="#FFF"
-                    strokeWidth="2"
-                    d="m1 4 3.433 3.433L10.866 1"
-                  />
-                </svg>
+                />
               </div>
               <p className={styles.name}>{addon.name}</p>
               <p className={styles.description}>{addon.description}</p>
@@ -71,7 +63,7 @@ export default function AddonsCard({
   );
 }
 
-function getPriceMessage(addon: Addon, priceType: PriceType) {
+function getPriceMessage(addon: Addon, priceType: PriceType): string {
   if (priceType === "monthly") {
     return `+$${addon.monthlyPrice}/mo`;
   }

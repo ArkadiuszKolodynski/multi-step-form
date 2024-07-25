@@ -74,7 +74,7 @@ function getPriceMessage(
   monthlyPrice: number,
   yearlyPrice: number,
   priceType: PriceType
-) {
+): string {
   if (priceType === "monthly") {
     return `$${monthlyPrice}/mo`;
   }
@@ -82,7 +82,11 @@ function getPriceMessage(
   return `$${yearlyPrice}/yr`;
 }
 
-function calcTotal(plan: Plan, addons: Set<Addon>, priceType: PriceType) {
+function calcTotal(
+  plan: Plan,
+  addons: Set<Addon>,
+  priceType: PriceType
+): number {
   let total = 0;
   if (priceType === "monthly") {
     total += plan.monthlyPrice;

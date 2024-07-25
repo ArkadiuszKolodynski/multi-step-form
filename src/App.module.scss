@@ -8,25 +8,8 @@ $card-side-padding: 1rem;
   display: flex;
   height: 100vh;
   flex-direction: column;
-}
 
-.content {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-  margin-top: -4.5625rem;
-}
-
-.cardWrapper {
-  flex: 1;
-  padding: 0 $card-side-padding 1rem;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-@media only screen and (min-width: 1024px) {
-  .main {
+  @media only screen and (min-width: 1024px) {
     height: unset;
     width: 940px;
     display: flex;
@@ -36,12 +19,27 @@ $card-side-padding: 1rem;
     border-radius: 15px;
     box-shadow: 0 25px 40px -20px rgba(0, 0, 0, 0.0951);
   }
+}
 
-  .content {
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  margin-top: -4.5625rem;
+
+  @media only screen and (min-width: 1024px) {
     margin-top: unset;
     height: unset;
     flex: 1;
     padding: calc(3.5rem - 1rem) calc(6.25rem - $padding - $card-side-padding) calc(2rem - $padding)
       calc(6.25rem - $card-side-padding);
   }
+}
+
+.cardWrapper {
+  flex: 1;
+  padding: 0 $card-side-padding 1rem;
+  min-height: 0;
+  overflow-y: auto;
 }
