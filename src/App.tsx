@@ -8,13 +8,18 @@ import {
 } from "react";
 import { ClipLoader } from "react-spinners";
 import styles from "./App.module.scss";
-import PersonalInfoCard from "./components/cards/PersonalInfoCard";
+import FinishingUpCard from "./components/cards/FinishingUpCard";
 import { NavBar } from "./components/NavBar";
 import { StepIndicator } from "./components/StepIndicator";
-import { Plan, plans, steps } from "./data";
+import { Addon, addons, Plan, plans, steps } from "./data";
 import { reducer, State } from "./reducer";
 
+const PersonalInfoCard = lazy(
+  () => import("./components/cards/PersonalInfoCard")
+);
 const PlanCard = lazy(() => import("./components/cards/PlanCard"));
+const AddonsCard = lazy(() => import("./components/cards/AddonsCard"));
+const ThankYouCard = lazy(() => import("./components/cards/ThankYouCard"));
 
 function App() {
   const initialState: State = {
@@ -28,7 +33,6 @@ function App() {
   };
 
   const [step, setStep] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isComplete, setIsComplete] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   const personalInfoFormId = "form-" + useId();
@@ -41,6 +45,10 @@ function App() {
     startTransition(() => setStep((step) => step - 1));
   };
 
+  const goToPlanStep = () => {
+    startTransition(() => setStep(1));
+  };
+
   const finish = () => {
     startTransition(() => setIsComplete(true));
   };
@@ -50,7 +58,7 @@ function App() {
       <StepIndicator steps={steps} currentStep={steps[step].id} />
       <Suspense fallback={<ClipLoader />}>
         <div className={styles.content}>
-          {
+          {!isComplete ? (
             <>
               <div className={styles.cardWrapper}>
                 {step === 0 && (
@@ -84,6 +92,24 @@ function App() {
                     }
                   />
                 )}
+                {step === 2 && (
+                  <AddonsCard
+                    addons={addons}
+                    priceType={state.priceType}
+                    checkedAddons={state.addons}
+                    onToggleAddon={(addon: Addon) =>
+                      dispatch({ type: "TOGGLE_PLAN_ADDON", addon })
+                    }
+                  />
+                )}
+                {step === 3 && (
+                  <FinishingUpCard
+                    onChangePlanClick={goToPlanStep}
+                    plan={state.plan}
+                    addons={state.addons}
+                    priceType={state.priceType}
+                  />
+                )}
               </div>
 
               <NavBar
@@ -96,7 +122,11 @@ function App() {
                 onConfirmButtonClick={finish}
               />
             </>
-          }
+          ) : (
+            <div className={styles.thankYouCardWrapper}>
+              <ThankYouCard />
+            </div>
+          )}
         </div>
       </Suspense>
     </main>

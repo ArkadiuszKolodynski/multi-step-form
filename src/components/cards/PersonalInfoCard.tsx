@@ -99,15 +99,17 @@ export default function PersonalInfoCard({
   );
 }
 
-function validateName(name: string) {
+const requiredFieldError = "This field is required";
+
+function validateName(name: string): string | undefined {
   if (name.length === 0) {
-    return "This field is required";
+    return requiredFieldError;
   }
 }
 
-function validateEmail(email: string) {
+function validateEmail(email: string): string | undefined {
   if (email.length === 0) {
-    return "This field is required";
+    return requiredFieldError;
   }
 
   if (
@@ -119,9 +121,9 @@ function validateEmail(email: string) {
   }
 }
 
-function validatePhoneNumber(phone: string) {
+function validatePhoneNumber(phone: string): string | undefined {
   if (phone.length === 0) {
-    return "This field is required";
+    return requiredFieldError;
   }
 
   if (!/^[0-9]*$/.test(phone)) {
